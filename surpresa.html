@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Meu Amor 💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background-color: #f5f0fa;
+      color: #4a0066;
+      text-align: center;
+    }
+    header {
+      background-color: #c084fc;
+      padding: 2rem 1rem;
+      color: white;
+    }
+    .quiz {
+      margin: 2rem auto;
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: none;
+      background-color: #e9d5ff;
+      color: #4a0066;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .options button:hover {
+      background-color: #d8b4fe;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    img.hedgehog {
+      width: 100px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Feliz Dia dos Namorados 💜</h1>
+    <p>Uma surpresa feita com amor... e com um Ouricinho 🦔</p>
+    <img src="https://i.imgur.com/yYjKXgP.png" alt="Ouricinho fofo" class="hedgehog">
+  </header>
+
+  <div class="quiz" id="quiz-container">
+    <div class="question" id="question">Carregando...</div>
+    <div class="options" id="options"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <footer>
+    Feito com 💜 por alguém que te ama muito.
+  </footer>
+
+  <script>
+    const quizData = [
+      {
+        question: "Qual o nome do vilão mundial?",
+        options: ["Valdemort", "Vulture", "Cabecinha", "Lord Bum-bum Mole"],
+        answer: "Cabecinha",
+        message: "Esse é do mal mesmo... mas você acaba com ele! 💖"
+      },
+      {
+        question: "Qual cor você mais ama?",
+        options: ["Azul", "Roxo", "Verde", "Amarelo"],
+        answer: "Roxo",
+        message: "Como esquecer? Até o site é roxo só por você 💜"
+      },
+      {
+        question: "Qual é o animal mais fofo do mundo?",
+        options: ["Gato", "Cachorro", "Ouricinho", "Panda"],
+        answer: "Ouricinho",
+        message: "Igual ao nosso amor: pequeno, fofo e cheio de espinhos de saudade quando estamos longe 🦔"
+      }
+    ];
+
+    let current = 0;
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const resultEl = document.getElementById("result");
+
+    function loadQuestion() {
+      const q = quizData[current];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+      resultEl.textContent = "";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (opt === q.answer) {
+            resultEl.textContent = q.message;
+            current++;
+            if (current < quizData.length) {
+              setTimeout(loadQuestion, 2000);
+            } else {
+              setTimeout(() => {
+                questionEl.textContent = "Você acertou tudo, meu amor! 💘";
+                optionsEl.innerHTML = "";
+                resultEl.innerHTML = "Obrigada por ser minha pessoa favorita no mundo inteiro. Feliz Dia dos Namorados! 💌";
+              }, 2000);
+            }
+          } else {
+            resultEl.textContent = "Hmm... tenta de novo, vai! 😉";
+          }
+        };
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
