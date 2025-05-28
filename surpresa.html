@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Meu Amor 💜</title>
-    <style>
+  <style>
     body {
       margin: 0;
       font-family: 'Nunito', sans-serif;
@@ -65,7 +65,7 @@
   <header>
     <h1>Feliz Dia dos Namorados 💜</h1>
     <p>Uma surpresa feita com amor... e com um Ouricinho 🦔</p>
-    <img src="https://imgur.com/a/7HIcKiO" alt="Ouricinho fofo" class="hedgehog">
+    <img src="https://i.imgur.com/u0E2OZR.png" alt="Ouricinho fofo" class="hedgehog">
   </header>
 
   <div class="quiz" id="quiz-container">
@@ -79,82 +79,83 @@
   </footer>
 
   <script>
-    const quizData = [
-      {
-        question: "Qual o nome do vilão mundial?",
-        options: ["Valdemort", "Vulture", "Cabecinha", "Lord Bum-bum Mole"],
-        answer: "Cabecinha",
-        message: "Esse é do mal mesmo... mas você acaba com ele! 💖"
-      },
-      {
-        question: "Qual cor você mais ama?",
-        options: ["Azul", "Roxo", "Verde", "Amarelo"],
-        answer: "Roxo",
-        message: "Como esquecer? Até o site é roxo só por você 💜"
-      },
-      {
-        question: "Qual é o animal mais fofo do mundo?",
-        options: ["Gato", "Cachorro", "Ouricinho", "Panda"],
-        answer: "Ouricinho",
-        message: "Igual ao nosso amor: pequeno, fofo e cheio de espinhos de saudade quando estamos longe 🦔"
-      }
-       {
-        question: "Quem tem o melhor faro do mundo?",
-        options: ["Rodrigo Faro?", "FAROfeiro", "Farolete", "Faro-Fino"],
-        answer: "Faro-Fino",
-        message: "Ele consegue sentir de longe o quanto eu te amo! 💖"
-      }
-     {
-        question: "Quem veio primeiro?",
-        options: ["Capitão", "Pelicano", "Cabecinha", "Ouricinho"],
-        answer: "Pelicano",
-        message: "Resposta polêmica essa, mas foi na nossa segunda viagem juntos"
-      }
-    {
-        question: "Qual o nome do nossos futuros salsichinhas?",
-        options: ["Pézinho & Mãozinha", "Faro-Fino & Cabecinha", "Cabecinha & Pelicano", "Pelicano & Água-Viva"],
-        answer: "Cabecinha & Pelicano",
-        message: "Eles serão os cachorrinhos com a melhor mãe do mundo!!"
-      }
-    ];
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizData = [
+        {
+          question: "Qual o nome do vilão mundial?",
+          options: ["Valdemort", "Vulture", "Cabecinha", "Lord Bum-bum Mole"],
+          answer: "Cabecinha",
+          message: "Esse é do mal mesmo... Você ta macumunada ou você acaba com ele? 💖"
+        },
+        {
+          question: "Qual cor você mais ama?",
+          options: ["Azul", "Roxo", "Verde", "Amarelo"],
+          answer: "Roxo",
+          message: "Como esquecer? Até o site é roxo só por você 💜"
+        },
+        {
+          question: "Qual é o animal mais fofo do mundo?",
+          options: ["Gato", "Cachorro", "Ouricinho", "Panda"],
+          answer: "Ouricinho",
+          message: "Igual ao nosso amor: pequeno, fofo e cheio de espinhos de saudade quando estamos longe 🦔"
+        },
+        {
+          question: "Quem tem o melhor faro do mundo?",
+          options: ["Rodrigo Faro", "FAROfeiro", "Farolete", "Faro-Fino"],
+          answer: "Faro-Fino",
+          message: "Ele consegue sentir de longe o quanto eu te amo! 💖"
+        },
+        {
+          question: "Quem veio primeiro?",
+          options: ["Capitão", "Pelicano", "Cabecinha", "Ouricinho"],
+          answer: "Pelicano",
+          message: "Resposta polêmica essa. TA MACUMUNADA?"
+        },
+        {
+          question: "Qual o nome do nossos futuros salsichinhas?",
+          options: ["Pézinho & Mãozinha", "Faro-Fino & Cabecinha", "Cabecinha & Pelicano", "Pelicano & Água-Viva"],
+          answer: "Cabecinha & Pelicano",
+          message: "Eles serão os cachorrinhos com a melhor mãe do mundo!!"
+        }
+      ];
 
-    let current = 0;
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
-    const resultEl = document.getElementById("result");
+      let current = 0;
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+      const resultEl = document.getElementById("result");
 
-    function loadQuestion() {
-      const q = quizData[current];
-      questionEl.textContent = q.question;
-      optionsEl.innerHTML = "";
-      resultEl.textContent = "";
+      function loadQuestion() {
+        const q = quizData[current];
+        questionEl.textContent = q.question;
+        optionsEl.innerHTML = "";
+        resultEl.textContent = "";
 
-      q.options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.textContent = opt;
-        btn.onclick = () => {
-          if (opt === q.answer) {
-            resultEl.textContent = q.message;
-            current++;
-            if (current < quizData.length) {
-              setTimeout(loadQuestion, 2000);
+        q.options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.onclick = () => {
+            if (opt === q.answer) {
+              resultEl.textContent = q.message;
+              current++;
+              if (current < quizData.length) {
+                setTimeout(loadQuestion, 2000);
+              } else {
+                setTimeout(() => {
+                  questionEl.textContent = "Você acertou tudo, meu amor! 💘";
+                  optionsEl.innerHTML = "";
+                  resultEl.innerHTML = "Obrigado por ser minha pessoa favorita no mundo inteiro. Eu te amo, muito. 💖 Feliz Dia dos Namorados! 💌";
+                }, 2000);
+              }
             } else {
-              setTimeout(() => {
-                questionEl.textContent = "Você acertou tudo, meu amor! 💘";
-                optionsEl.innerHTML = "";
-                resultEl.innerHTML = "Obrigada por ser minha pessoa favorita no mundo inteiro. Eu te amo, muito. 💖 Feliz Dia dos Namorados! 💌";
-              }, 2000);
+              resultEl.textContent = "Hmm... tenta de novo, vai! 😉";
             }
-          } else {
-            resultEl.textContent = "Hmm... tenta de novo, vai! 😉";
-          }
-        };
-        optionsEl.appendChild(btn);
-      });
-    }
+          };
+          optionsEl.appendChild(btn);
+        });
+      }
 
-    loadQuestion();
+      loadQuestion();
+    });
   </script>
 </body>
 </html>
-
