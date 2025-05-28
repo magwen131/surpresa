@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contagem Regressiva</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      text-align: center;
+      background-color: #f5f0fa;
+      color: #4a0066;
+      margin-top: 100px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    #random-phrase {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #6b21a8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Faltam...</h1>
+  <div id="countdown">Carregando...</div>
+  <div id="random-phrase"></div>
+
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const phraseEl = document.getElementById("random-phrase");
+
+    // Frases aleatórias
+    const frases = [
+      "E agora... o que é isso?",
+      "Será que é o cabecinha?",
+      "Será macumunação?",
+      "Talvez... uma atualização do cerco?",
+      "Será que os Advogadozinhos foram demitidos?",
+      "Será que o Faro-Fino descobriu algo?",
+      "Será que... A FERNANDA DO MAL FUGIU?",
+      "Talvez... O MARCELO DO MAL TENHA ESCAPADO?"
+    ];
+
+    // Exibir uma frase aleatória
+    function mostrarFraseAleatoria() {
+      const index = Math.floor(Math.random() * frases.length);
+      phraseEl.textContent = frases[index];
+    }
+
+    // Define a data final: 12 de junho de 2025 às 00:00:00
+    const dataFinal = new Date("2025-06-12T00:00:00");
+
+    function atualizarContagem() {
+      const agora = new Date();
+      const tempoRestante = dataFinal - agora;
+
+      if (tempoRestante <= 0) {
+        countdownEl.textContent = "Chegou o grande dia! 💜";
+        clearInterval(intervalo);
+        return;
+      }
+
+      const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((tempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((tempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((tempoRestante % (1000 * 60)) / 1000);
+
+      countdownEl.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    const intervalo = setInterval(atualizarContagem, 1000);
+    atualizarContagem(); // Atualiza imediatamente
+    mostrarFraseAleatoria(); // Mostra frase ao carregar
+  </script>
+
+</body>
+</html>
